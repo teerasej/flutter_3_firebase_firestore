@@ -14,36 +14,43 @@ class NewItemPage extends StatelessWidget {
       ),
       body: Form(
         key: _formKey,
-        child: Column(
-          children: [
-            Text('Name:'),
-            SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              validator: (value) {
-                if (value != null && value.isNotEmpty) {
-                  return null;
-                } else {
-                  return 'Please fill the form';
-                }
-              },
-              onSaved: (value) {
-                _newItemName = value ?? '';
-              },
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                }
-              },
-              child: Text('Save'),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Name:'),
+              SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                validator: (value) {
+                  if (value != null && value.isNotEmpty) {
+                    return null;
+                  } else {
+                    return 'Please fill the form';
+                  }
+                },
+                onSaved: (value) {
+                  _newItemName = value ?? '';
+                },
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                    }
+                  },
+                  child: Text('Save'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
