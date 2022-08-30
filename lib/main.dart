@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_3_firebase_firestore/pages/edit_item_page.dart';
 import 'package:flutter_3_firebase_firestore/pages/home_page.dart';
 import 'package:flutter_3_firebase_firestore/pages/new_item_page.dart';
+import 'package:flutter_3_firebase_firestore/providers/item_provider.dart';
 import 'package:flutter_3_firebase_firestore/utils/route_map.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,7 +14,14 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) {
+        return ItemProvider();
+      },
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RouteMap.home: (context) => HomePage(),
         RouteMap.item_new: (context) => NewItemPage(),
+        RouteMap.item_edit: (context) => EditItemPage(),
       },
     );
   }
