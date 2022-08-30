@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             var docs = snapshot.data!.docs;
             _itemModels = docs.map<ItemModel>(
               (e) {
-                return ItemModel.fromMap(e.data());
+                return ItemModel.fromMap(e.id, e.data());
               },
             ).toList();
 
