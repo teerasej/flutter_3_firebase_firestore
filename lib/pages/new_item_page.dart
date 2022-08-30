@@ -46,7 +46,7 @@ class NewItemPage extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      _db.collection('items').add({"name": _newItemName});
+                      _db.collection('items').add({'name': _newItemName});
 
                       Navigator.pop(context);
                     }
