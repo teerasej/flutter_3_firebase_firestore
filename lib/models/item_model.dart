@@ -1,9 +1,10 @@
 class ItemModel {
-  String name = "";
+  String name = '';
+  String id = '';
 
-  ItemModel(this.name);
+  ItemModel(this.name, {this.id = ''});
 
-  ItemModel.fromMap(Map<String, dynamic> doc) {
+  ItemModel.fromMap(this.id, Map<String, dynamic> doc) {
     name = doc['name'];
   }
 }
