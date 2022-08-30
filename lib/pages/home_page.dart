@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_3_firebase_firestore/models/item_model.dart';
+import 'package:flutter_3_firebase_firestore/providers/item_provider.dart';
 import 'package:flutter_3_firebase_firestore/utils/route_map.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -49,6 +51,10 @@ class _HomePageState extends State<HomePage> {
                 var item = _itemModels[index];
                 return ListTile(
                   title: Text(item.name),
+                  onTap: () {
+                    context.read<ItemProvider>().editingItem = item;
+                    Navigator.pushNamed(context, RouteMap.item_edit);
+                  },
                 );
               },
             );
