@@ -6,7 +6,6 @@ class NewItemPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
   String _newItemName = '';
-  final _db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,6 @@ class NewItemPage extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      _db.collection('items').add({'name': _newItemName});
 
                       Navigator.pop(context);
                     }

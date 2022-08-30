@@ -25,44 +25,13 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, RouteMap.item_new).then((value) {
-                setState(() {});
-              });
+              Navigator.pushNamed(context, RouteMap.item_new);
             },
             icon: Icon(Icons.add),
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: _db.collection('items').get(),
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.hasData) {
-            var docs = snapshot.data!.docs;
-            _itemModels = docs.map<ItemModel>(
-              (e) {
-                return ItemModel.fromMap(e.id, e.data());
-              },
-            ).toList();
-
-            return ListView.builder(
-              itemCount: _itemModels.length,
-              itemBuilder: (BuildContext context, int index) {
-                var item = _itemModels[index];
-                return ListTile(
-                  title: Text(item.name),
-                  onTap: () {
-                    context.read<ItemProvider>().editingItem = item;
-                    Navigator.pushNamed(context, RouteMap.item_edit);
-                  },
-                );
-              },
-            );
-          }
-
-          return LinearProgressIndicator();
-        },
-      ),
+      body: Container(),
     );
   }
 }

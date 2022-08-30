@@ -8,13 +8,9 @@ class EditItemPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
   String _updateItemName = '';
-  final _db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
-    var editingItem = context.read<ItemProvider>().editingItem;
-    _updateItemName = editingItem?.name ?? '';
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Item'),
@@ -52,10 +48,6 @@ class EditItemPage extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      _db
-                          .collection('items')
-                          .doc(editingItem!.id)
-                          .set({'name': _updateItemName});
 
                       Navigator.pop(context);
                     }
